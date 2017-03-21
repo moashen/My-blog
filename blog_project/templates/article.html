@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block left_content %}
+
+<body>
+
+<article>
+  <div class="l_box f_l">
+    <div class="postdate">
+      <div class="month">{{ article.date_publish|date:'M' }}</div>
+      <div class="date">{{ article.date_publish|date:'d' }}</div>
+    </div>
+    <div class="title">
+        <h2><a href="#" rel="bookmark" title="{{ article.title }}">{{ article.title }}</a></h2>
+        <div class="postmeta">
+          <span class="postmeta_author">{{ article.user }}</span>
+          <span class="postmeta_category"><a href="#" rel="category">{{ article.category }}</a></span>
+          <span class="postmeta_time">{{ article.date_publish }}</span>
+        </div><!-- end postmeta -->
+        <div class="entry">
+          {{ article.content|safe }}
+        </div>
+        <span class="tags">{% for tag in article.tag.all %}<a href="http://www.baidu.org/?tag=android" rel="tag">{{ tag }}</a>{% if not forloop.last %},{% endif %}{% endfor %}<div class="info">
+        Address:  <a href="http://www.baidu.org/?p=542" rel="bookmark" title="Announcement: java  开发相关下载(定期更新中)">{{ request.get_full_path }}</a>
+      </div>
+
+      <div class="commentstitle"><span class="trackback"><a href="http://www.baidu.org/wp-trackback.php?p=542" rel="trackback" title="Trackback URI"></a></span><h3 id="comments"><span class="commentsnumber">only 1 comment</span> untill now</h3></div>
+        {% include 'comment.html' %}
+    </div>
+
+  </div>
+
+  <!--r_box end -->
+</article>
+
+</body>
+
+{% endblock %}
